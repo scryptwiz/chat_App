@@ -1,0 +1,70 @@
+#main-bg {
+    background-color: #2B2E33;
+}
+
+#mainer-bg:hover {
+    background-color: #2B2E33;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#inner-bg {
+    background-color: #232323;
+}
+
+#middle-div {
+    background-color: #242431;
+}
+
+#inner-chat-bg {
+    background-color: #2e2e2e;
+}
+
+#image {
+    background-image: url('../assets/chat5.svg');
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+/* hello */
+
+#side-bar {
+    background-color: #0d0d13;
+}
+
+#middle-bar {
+    background-color: #19191F;
+}
+
+#last-bar {
+    background-color: #0d0d13;
+}
+
+#messages {
+    background-color: #0d0d13;
+}
+
+#sendBtn {
+    background-color: #0d0d13;
+}
+
+#notification {
+    color: #2a9c16;
+}
+
+#chat {
+    /* width: 10%; */
+    background-color: #19191F;
+}

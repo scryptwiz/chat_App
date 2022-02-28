@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style/style.css">
+    <title>Chat</title>
+    <script src="/js/socket.io.js"></script>
+</head>
+
+<body>
+
+    <div class="flex h-screen">
+        <div class="w-16 h-screen flex flex-col items-center justify-between py-8" id="inner-bg">
+            <h2 class="font-bold text-blue-100 text-2xl">F</h2>
+            <i class="fa-solid text-gray-300 fa-arrow-right-from-bracket text-xl cursor-pointer"></i>
+        </div>
+        <!-- middle div -->
+        <div class="w-3/12 h-screen pt-7 border-l-0" id="middle-div">
+            <div>
+                <div class="w-full h-10 flex px-5 items-center justify-between">
+                    <h4 class="font-semibold text-gray-300 text-xl mb-2">Messages</h4>
+                </div>
+                <hr class="border-gray-500">
+            </div>
+            <div class="">
+                <input type="text" class="px-2 w-11/12 rounded-md m-auto text-gray-100 py-1.5 mt-2 outline-none placeholder-gray-300" id="inner-bg" placeholder="Search">
+            </div>
+            <!-- content -->
+            <div class="h-4/5 px-2 flex flex-col overflow-y-scroll font-semibold" id="">
+                <!-- persons icon -->
+                <div class="w-full h-12 flex items-center mt-4 transition duration-300 cursor-pointer rounded-l-full hover:bg-indigo-500 rounded-r-3xl">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                        <i class="fa-solid fa-user text-xl text-gray-300"></i>
+                    </div>
+                    <h3 class="text-gray-100 ml-3">kelvin</h3>
+                </div>
+                <div class="w-full h-12 flex items-center mt-4 transition duration-300 cursor-pointer rounded-l-full rounded-r-3xl" id="mainer-bg">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                        <i class="fa-solid fa-user text-xl text-gray-300"></i>
+                    </div>
+                    <h3 class="text-gray-100 ml-3">Fola</h3>
+                </div>
+                <div class="w-full h-12 flex items-center mt-4 transition duration-300 cursor-pointer rounded-l-full rounded-r-3xl" id="mainer-bg">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                        <i class="fa-solid fa-user text-xl text-gray-300"></i>
+                    </div>
+                    <h3 class="text-gray-100 ml-3">Dolapo</h3>
+                </div>~
+            </div>
+        </div>
+        <!-- right div -->
+        <div class="w-9/12 h-screen flex flex-col justify-between" id="inner-bg">
+            <!-- major user -->
+            <div class="flex justify-between items-center px-10 pt-10 w-full border-b border-gray-500">
+                <h4 class="text-gray-100 font-semibold text-2xl pb-2">Kelvin</h4>
+            </div>
+            <div class="h-5/6 border-b border-gray-100 w-full">
+
+            </div>
+            <div class="h-20 w-full flex flex-row items-center justify-around">
+                <input type="text" class="rounded-md w-4/5 h-10 px-5 outline-none" placeholder="Enter a message">
+                <div class="w-10 h-10 rounded-full flex justify-center items-center">
+                    <i class="fa-solid fa-paper-plane text-2xl text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- second design -->
+    <div class="flex  h-screen">
+        <!-- left bar -->
+        <div class="w-16 h-screen flex flex-col items-center justify-between py-8" id="side-bar">
+            <h4 class="text-gray-200 font-bold text-xl">F</h4>
+            <i class="fa-solid text-gray-300 fa-arrow-right-from-bracket text-xl cursor-pointer"></i>
+        </div>
+        <!-- middle bar -->
+        <div class="w-3/12 h-screen pt-8 px-5" id="middle-bar">
+            <!-- message top -->
+            <div class="flex flex-row justify-between items-center">
+                <h4 class="text-gray-300 font-semibold text-xl capitalize">
+                    <%= found.username  %>
+                </h4>
+                <div class="flex flex-row justify-center mt-1 items-center">
+                    <i class="fa-solid fa-circle-plus text-gray-300"></i>
+                    <i class="fa-solid fa-bell text-gray-300 pl-5"></i>
+                </div>
+            </div>
+            <!-- search -->
+            <div class="mt-4 ">
+                <input type="text" placeholder="Search" class="px-3 py-1.5 text-sm outline-none rounded opacity-100 w-full text-gray-300" id="last-bar">
+            </div>
+            <!-- users -->
+            <div class="w-full h-5/6 mt-4 overflow-y-scroll">
+                <% users.map(infos => { %>
+                    <div onclick="informations()">
+                        <input hidden id="user_id" value="<%= infos._id %>">
+                        <div class="flex flex-row items-center hover:bg-gray-700 h-14 transition duration-500 cursor-pointer px-1">
+                            <div class="w-8 h-8 flex justify-center items-center rounded-full bg-gray-700">
+                                <i class="fa-solid fa-user text-gray-300"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-300 ml-3 capitalize">
+                                <%= infos.username %>
+                            </h4>
+                            <i class="fa-solid fa-circle ml-auto text-sm mt-1" id="notification"></i>
+                        </div>
+                        <hr class="border-gray-700">
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+
+
+
+
+
+
+        <!-- right bar -->
+        <div class="w-9/12 h-screen flex flex-col justify-between" id="last-bar">
+            <!-- top name -->
+            <div class="pt-8 px-5 flex justify-between items-center">
+                <!-- profile -->
+                <div class="flex">
+                    <div class="w-8 h-8 rounded-full bg-gray-500 flex mr-3 justify-center items-center">
+                        <i class="fa-solid fa-user text-gray-300"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-300 text-xl">Adedolapo</h4>
+                </div>
+                <div class="flex text-gray-300 w-2/12 justify-around">
+                    <i class="fa-solid fa-video hover:text-gray-700"></i>
+                    <i class="fa-solid fa-phone hover:text-gray-700"></i>
+                    <i class="fa-solid fa-ellipsis-vertical hover:text-gray-700"></i>
+                </div>
+            </div>
+
+
+
+            <!-- middle right name -->
+            <div class="h-5/6 mt-8 px-7 overflow-y-scroll" id="chatArea">
+
+            </div>
+            <!-- down last -->
+            <div class="h-16 bg-gray-700 border-l border-gray-700 flex justify-around items-center" id="middle-bar">
+                <!-- input and send -->
+                <div class="w-4/5 flex">
+                    <input type="text" placeholder="Write A Message ..." class="w-full h-9 rounded-l px-3 outline-none text-gray-300 text-sm" id="messages">
+                    <div class=" w-9 h-9 flex justify-center items-center cursor-pointer rounded-r cursor-pointer" id="sendBtn">
+                        <i class="fa-solid fa-paper-plane text-gray-300 hover:text-gray-500"></i>
+                    </div>
+                </div>
+                <!-- voice note -->
+                <div class="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer " id="last-bar">
+                    <i class="fa-solid fa-microphone text-gray-300 hover:text-gray-500 "></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let socket = io("http://localhost:5000")
+
+    sendBtn.addEventListener('click', () => {
+        let message = messages.value;
+        let time = new Date().toLocaleTimeString();
+        let msg = {
+            content: message,
+            time
+        }
+
+        socket.emit('newMessage', msg)
+        messages.value = ""
+        messages.focus();
+    });
+
+    socket.on('newMessage', (data) => {
+        showMessage(data);
+    })
+
+    function showMessage(data) {
+        let {
+            content,
+            time
+        } = data;
+        console.log(data);
+        let messageHTML = `<div><div class="px-3 py-2 mt-5 text-gray-300 rounded w-28" id="chat">
+                    <span class="text-gray-500">Fola</span><br>
+                    <apan>${content}</span>
+                </div></div>`;
+        chatArea.innerHTML += messageHTML;
+    }
+
+    function informations() {
+        let user = document.getElementById('user_id').value
+        console.log(user);
+        alert(user);
+    }
+</script>
+
+</html>
