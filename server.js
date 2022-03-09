@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
-const port = 5000
+require('dotenv').config()
+const port = process.env.PORT || 3500
 const bodyParser = require("body-parser")
 const mongoose = require('mongoose')
 const ejs = require('ejs')
@@ -8,7 +9,7 @@ app.set('view engine', 'ejs')
 
 // mongoose
 app.use(bodyParser.urlencoded({ extended: true }))
-const URI = "mongodb+srv://kelvin:kelvin002@cluster0.lgdus.mongodb.net/chatapp?retryWrites=true&w=majority";
+const URI = process.env.MONGOS_URI
 mongoose.connect(URI, (err) => {
     if (err) {
         console.log(err);
